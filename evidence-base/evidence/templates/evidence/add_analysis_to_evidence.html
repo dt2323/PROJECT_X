@@ -1,0 +1,15 @@
+{% extends "evidence/evidence_base.html" %}
+<h3>{{ evidence.message_html|safe }}</h3>
+
+
+
+{% block evidence_content %}
+<p><a href=" {{ evidence.website }}" >Link to Evidence</a></p>
+<h1>New Analysis for WHY IS THIS STILL NOT DYNAMIC? {{ evidence.title }} </h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ analysis_form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+
+
+{% endblock %}

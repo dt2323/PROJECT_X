@@ -1,0 +1,25 @@
+{% extends "evidence/evidence_base.html" %}
+
+{% block evidence_content %}
+
+<h1>{{ evidence.category.title }}</h1>
+
+<ul>
+  {% for evidence in object_list %}
+  <div class="evidencefeed">
+    <br>
+    <h3 class="media-heading">
+
+      <time class="time"><a href="{% url 'evidence:single' username=evidence.user.username pk=evidence.pk %}">{{ evidence.title }}</a></time>
+
+    </h3>
+      <div class="date">{{ evidence.created_at }}</div>
+      <strong>Added by {{ evidence.user }}</strong>
+      <p> {{evidence.contributors_note}} </p>
+      <strong>Category: {{ evidence.category }}</strong>
+
+  {% empty %}
+      <p>No evidence here yet :(</p>
+  {% endfor %}
+</div>
+{% endblock %}
