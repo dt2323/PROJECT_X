@@ -11,11 +11,11 @@
 		<p>Last updated: {{ evidence.last_updated }}</p>
 		<p><a href=" {{ evidence.website }}" >Link to Evidence</a></p>
 		<p><a class="btn btn-default" href="{% url 'evidence:evidence_update' pk=evidence.pk %}">Update this Evidence</a></p>
-		<p><a class="btn btn-primary" href="{% url 'evidence:filtered_evidence' slug=evidence.category.slug %}">View the Category</a></p>
+		<p><a class="btn btn-primary" href="{% url 'category:filtered_evidence' slug=evidence.category.slug %}">View the Category</a></p>
 		<p><a class="btn btn-danger" href="{% url 'evidence:evidence_delete' pk=evidence.pk %}">Delete Evidence</a></p>
 
 		<h2>Analysis Summary</h2>
-		<p> Evidence Strength: insert something dynamic to make me pretty </p>
+		<p> Evidence Strength: {insert dynamic evidence rating} </p>
 		<h5>Key Findings</h5>
 		<p> - {{ analysis.key_finding1 }}</p>
 		<p> - {{ analysis.key_finding2 }}</p>
@@ -26,15 +26,37 @@
 
 		<strong> Detailed Analysis </strong>
 
+
+		<h3>
+		{% if evidence.cr1_avg %}
+		<h4>Content Ratings</h4>
+			<p>Content Rating 1 Team average: {{ evidence.cr1_avg }}</p>
+			<p>Content Rating 2 Team average: {{ evidence.cr2_avg }}</p>
+			<p>Content Rating 3 Team average: {{ evidence.cr3_avg }}</p>
+			<p>Content Rating 4 Team average: {{ evidence.cr4_avg }}</p>
+			<p>Content Rating 5 Team average: {{ evidence.cr5_avg }}</p>
+
+		<h4>Content Ratings</h4>
+			<p>Source Rating 1 Team average: {{ evidence.sr1_avg }}</p>
+			<p>Source Rating 2 Team average: {{ evidence.sr2_avg }}</p>
+			<p>Source Rating 3 Team average: {{ evidence.sr3_avg }}</p>
+			<p>Source Rating 4 Team average: {{ evidence.sr4_avg }}</p>
+			<p>Source Rating 5 Team average: {{ evidence.sr5_avg }}</p>
+
+		{% endif %}
+	</h3>
+
 		<hr>
 			{% for analyses in evidence.analysis.all %}
 			    <div class="analysis">
 						<br>
+
 							<h4>{{ analyses.title }}</h4>
 							<div class="date">{{ analyses.created_at }}</div>
 			        <strong>By {{ analyses.analyst }}</strong>
 
 			        <p><strong> Content Rating Area 1 </strong> {{ analyses.content_rating_1 }}</p>
+
 							<p>{{ analyses.content_rating_1_comment }}</p>
 
 							<p><strong> Content Rating Area 2 </strong> {{ analyses.content_rating_2 }}</p>

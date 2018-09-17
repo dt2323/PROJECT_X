@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -7,6 +8,7 @@ import datetime
 import misaka
 from django.contrib.auth import get_user_model
 Current_user = get_user_model()
+from django.db.models import Avg
 
 # Models from our applications here
 from category.models import Category
@@ -51,7 +53,7 @@ class Evidence(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
-        
+
 
 class Analysis(models.Model):
     title = models.CharField(max_length=150, unique=False, blank=False)
@@ -66,33 +68,33 @@ class Analysis(models.Model):
     key_finding3 = models.TextField(max_length=300)
 
     ratings_range = (
-    ('1', 'Very Weak'),
-    ('2', 'Weak'),
-    ('3', 'Moderate'),
-    ('4', 'Strong'),
-    ('5', 'Very Strong'),
+    (1, 'Very Weak'),
+    (2, 'Weak'),
+    (3, 'Moderate'),
+    (4, 'Strong'),
+    (5, 'Very Strong'),
     )
 
-    content_rating_1 = models.CharField(max_length=1, choices=ratings_range)
+    content_rating_1 = models.IntegerField(choices=ratings_range)
     content_rating_1_comment = models.TextField(max_length=300)
-    content_rating_2 = models.CharField(max_length=1, choices=ratings_range)
+    content_rating_2 = models.IntegerField(choices=ratings_range)
     content_rating_2_comment = models.TextField(max_length=300)
-    content_rating_3 = models.CharField(max_length=1, choices=ratings_range)
+    content_rating_3 = models.IntegerField(choices=ratings_range)
     content_rating_3_comment = models.TextField(max_length=300)
-    content_rating_4 = models.CharField(max_length=1, choices=ratings_range)
+    content_rating_4 = models.IntegerField(choices=ratings_range)
     content_rating_4_comment = models.TextField(max_length=300)
-    content_rating_5 = models.CharField(max_length=1, choices=ratings_range)
+    content_rating_5 = models.IntegerField(choices=ratings_range)
     content_rating_5_comment = models.TextField(max_length=300)
 
-    source_rating_1 = models.CharField(max_length=1, choices=ratings_range)
+    source_rating_1 = models.IntegerField(choices=ratings_range)
     source_rating_1_comment = models.TextField(max_length=300)
-    source_rating_2 = models.CharField(max_length=1, choices=ratings_range)
+    source_rating_2 = models.IntegerField(choices=ratings_range)
     source_rating_2_comment = models.TextField(max_length=300)
-    source_rating_3 = models.CharField(max_length=1, choices=ratings_range)
+    source_rating_3 = models.IntegerField(choices=ratings_range)
     source_rating_3_comment = models.TextField(max_length=300)
-    source_rating_4 = models.CharField(max_length=1, choices=ratings_range)
+    source_rating_4 = models.IntegerField(choices=ratings_range)
     source_rating_4_comment = models.TextField(max_length=300)
-    source_rating_5 = models.CharField(max_length=1, choices=ratings_range)
+    source_rating_5 = models.IntegerField(choices=ratings_range)
     source_rating_5_comment = models.TextField(max_length=300)
 
 
@@ -103,7 +105,19 @@ class Analysis(models.Model):
     def __str__(self):
         return self.title
 
-
-
     class Meta:
         ordering = ["-created_at"]
+
+
+
+#These are calculations for the evidence rating of a single entry. They will be updated once weights in the board are set.
+#    def evidence_rating():
+#        CR1 = Analysis.objects.aggregate(Avg('content_rating_1'))
+#
+#        The Avg (CR1) will be multiplied by the related weight (WGHC) from board.weightcharactertic_1 (i.e. CR1*WGHC1=EVR_CON1)
+#        We repeat for each field, including the source
+#        Then we add all of them together to get SUWR (sum of user weighted ratings)
+#        Then we'd need the SMVC (the maximum score that the evidence could have attained given the weights)
+#            Calculated as SMVC = (WGHC1*5)+(WGHC2*5) etc.
+#        Lastly, we calculate the evidence rating as: EVR = ((SUWR / SMVC))*100)/20
+#        Linking these fields to to the board settings should be interesting, unless you hardcode it. Which you dont want to do in case they only pick a couple characteristics

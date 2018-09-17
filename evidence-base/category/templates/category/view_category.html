@@ -1,0 +1,42 @@
+{% extends "category/category_base.html" %}
+
+
+{% block pre_category %}
+<div class="evidence media">
+	<div class="media-body">
+    {% for catg in category %}
+        <strong>Category: {{ catg.title }} </strong>
+    		<p>{{ catg.sub_title }}</p>
+    		<p>Description: {{ catg.category_description }}</p>
+    		<p>Evidence Count: </p>
+        <p>Evidence Rating: </p>
+        <p>Contributors Count: </p>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block category_content %}
+    <h1>Evidence feed {{ title }}</h1>
+    <ul>
+      {% for evidence in object_list %}
+      <div class="evidencefeed">
+        <br>
+        <h3 class="media-heading">
+          <time class="time"><a href="{% url 'evidence:single' username=evidence.user.username pk=evidence.pk %}">{{ evidence.title }}</a></time>
+        </h3>
+          <div class="date">{{ evidence.created_at }}</div>
+          <strong>Added by {{ evidence.user }}</strong>
+          <p> {{evidence.contributors_note}} </p>
+          <strong>Category: {{ evidence.category }}</strong>
+
+      {% empty %}
+          <p>No evidence here yet :(</p>
+      {% endfor %}
+    </div>
+
+{% endblock %}
+
+
+</div>
+</div>

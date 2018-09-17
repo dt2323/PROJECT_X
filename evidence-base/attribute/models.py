@@ -18,6 +18,7 @@ class Attribute(models.Model):
 
     user = models.ForeignKey(Current_user, related_name="attribute")
     created_at = models.DateTimeField(auto_now_add=True)
+    board = models.ForeignKey(Board, related_name="attribute",null=True, blank=False)
 
     def __str__(self):
         return self.title

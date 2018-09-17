@@ -20,11 +20,11 @@ class EvidenceForm(forms.ModelForm):
             )
 
 
-class AnalysisForm(forms.ModelForm):
+#class AnalysisForm(forms.ModelForm):
 
-    class Meta:
-        model = models.Analysis
-        fields = ('title', 'content_rating_1', 'content_rating_1_comment', 'content_rating_2', 'content_rating_2_comment',
-        'content_rating_3', 'content_rating_3_comment','content_rating_4', 'content_rating_4_comment','content_rating_5', 'content_rating_5_comment',
-        'source_rating_1', 'source_rating_1_comment','source_rating_2', 'source_rating_2_comment',
-        'source_rating_3', 'source_rating_3_comment','source_rating_4', 'source_rating_4_comment','source_rating_5', 'source_rating_5_comment')
+#    class Meta:
+#        model = models.Analysis
+#        fields = ('title', 'content_rating_1', 'content_rating_1_comment', 'content_rating_2', 'content_rating_2_comment',
+#        'content_rating_3', 'content_rating_3_comment','content_rating_4', 'content_rating_4_comment','content_rating_5', 'content_rating_5_comment',
+#        'source_rating_1', 'source_rating_1_comment','source_rating_2', 'source_rating_2_comment',
+#        'source_rating_3', 'source_rating_3_comment','source_rating_4', 'source_rating_4_comment','source_rating_5', 'source_rating_5_comment')
