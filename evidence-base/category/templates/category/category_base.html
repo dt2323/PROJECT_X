@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="evidence-page">
+ <div class="container">
+   <div class="row">
+     {% block pre_category %} {% endblock %}
+     {% block category_content %} {% endblock %}
+     {% block post_category %} {% endblock %}
+   </div>
+ </div>
+</div>
+{% endblock %}

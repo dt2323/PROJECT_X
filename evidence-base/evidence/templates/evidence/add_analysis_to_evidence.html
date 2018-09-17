@@ -4,8 +4,35 @@
 
 
 {% block evidence_content %}
+
+{% for evidence in object.evidence_set.all %}
+  <li>{{evidence.title}}</li>
+  <li>{{evidence}}</li>
+{% endfor %}
+
+<h1>But this works</h1>
+
+<p>{{ analysis.evidence.title }}</p>
+<p>{{ evidence.title }}</p>
+
+{% for evidence in object_list %}
+
 <p><a href=" {{ evidence.website }}" >Link to Evidence</a></p>
+<p>{{ evidence.title }} </p>
+
 <h1>New Analysis for WHY IS THIS STILL NOT DYNAMIC? {{ evidence.title }} </h1>
+
+{% endfor %}
+
+{% for evd in evidence %}
+
+<p><a href=" {{ evd.website }}" >Link to Evidence</a></p>
+<p>{{ evd.title }} </p>
+
+<h1>New Analysis for WHY IS THIS STILL NOT DYNAMIC? {{ evd.title }} </h1>
+
+{% endfor %}
+
     <form method="POST" class="post-form">{% csrf_token %}
         {{ analysis_form.as_p }}
         <button type="submit" class="save btn btn-default">Send</button>
