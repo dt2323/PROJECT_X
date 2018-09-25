@@ -10,7 +10,6 @@ Current_user = get_user_model()
 # Models from our applications here
 from attribute.models import Attribute
 
-
 # Create your models here.
 class Category(models.Model):
     title = models.CharField(max_length=100, unique=False, blank=False)
@@ -20,7 +19,7 @@ class Category(models.Model):
     user = models.ForeignKey(Current_user, related_name="category")
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(allow_unicode=True, unique=False)
-
+    attribute = models.ForeignKey(Attribute, related_name="category",null=True, blank=False)
 
     def __str__(self):
         return self.title

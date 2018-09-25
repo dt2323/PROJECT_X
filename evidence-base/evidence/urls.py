@@ -2,7 +2,9 @@ from django.conf.urls import url
 
 from . import views
 from django.views.generic import ListView
-from evidence.views import EvidenceListFiltered
+#from evidence.views import EvidenceListFiltered
+from django.db import models
+
 
 
 app_name='evidence'
@@ -12,7 +14,7 @@ urlpatterns = [
     url(r"(?P<username>[-\w]+)/(?P<pk>\d+)/$",views.EvidenceDetail.as_view(),name="single"),
     url(r"(?P<pk>\d+)/analysis/$",views.add_analysis_to_evidence,name="add_analysis_to_evidence"),
     url(r"(?P<pk>\d+)/update/$",views.EvidenceUpdate.as_view(),name="evidence_update"),
-    url(r"^category/(?P<slug>[-\w]+)/$",views.EvidenceListFiltered.as_view(),name="filtered_evidence"),
+#    url(r"(?P<slug>[-\w]+)/$",views.EvidenceListFiltered.as_view(),name="filtered_evidence"),
     url(r"(?P<pk>\d+)/delete/$",views.EvidenceDelete.as_view(),name="evidence_delete"),
 
 
