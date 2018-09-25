@@ -14,7 +14,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = '9q%ct+ul86(3#h4kkio5$3bubfr()9=g5qw@8j80kwj7cr0)nd'
 
 ALLOWED_HOSTS = ['*']
 
@@ -22,6 +22,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 INSTALLED_APPS = [
                   'django.contrib.admin',
+                  'django.contrib.admindocs',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
                   'django.contrib.sessions',
@@ -105,16 +106,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 LOGIN_REDIRECT_URL = 'test'
 LOGOUT_REDIRECT_URL = 'thanks'
 
-TIME_ZONE = os.getenv("TIME_ZONE")
+TIME_ZONE = 'Europe/Istanbul'
 
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+        "NAME": "evbasedb",
+        "USER": "tyty",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "",
     }
 }

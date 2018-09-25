@@ -6,14 +6,52 @@ from django.utils.text import slugify
 import datetime
 import misaka
 from django.contrib.auth import get_user_model
+from django.db.models import Count, Avg, IntegerField, F
 Current_user = get_user_model()
 
 # Models from our applications here
 from category.models import Category
 
-
-
 # Create your models here.
+
+class EvidenceManager(models.Manager):
+    def get_queryset(self):
+        return super(EvidenceManager, self).get_queryset().annotate(
+        cr1_avg=Avg('analysis__content_rating_1', output_field=IntegerField()),
+        cr2_avg=Avg('analysis__content_rating_2', output_field=IntegerField()),
+        cr3_avg=Avg('analysis__content_rating_3', output_field=IntegerField()),
+        cr4_avg=Avg('analysis__content_rating_4', output_field=IntegerField()),
+        cr5_avg=Avg('analysis__content_rating_5', output_field=IntegerField()),
+        sr1_avg=Avg('analysis__source_rating_1', output_field=IntegerField()),
+        sr2_avg=Avg('analysis__source_rating_2', output_field=IntegerField()),
+        sr3_avg=Avg('analysis__source_rating_3', output_field=IntegerField()),
+        sr4_avg=Avg('analysis__source_rating_4', output_field=IntegerField()),
+        sr5_avg=Avg('analysis__source_rating_5', output_field=IntegerField()),
+        ).annotate(
+        suwr=(F('category__attribute__board__content_rating_1_weight')*F('cr1_avg'))+
+        (F('category__attribute__board__content_rating_2_weight')*F('cr2_avg'))+
+        (F('category__attribute__board__content_rating_3_weight')*F('cr3_avg'))+
+        (F('category__attribute__board__content_rating_4_weight')*F('cr4_avg'))+
+        (F('category__attribute__board__content_rating_5_weight')*F('cr5_avg'))+
+        (F('category__attribute__board__source_rating_1_weight')*F('sr1_avg'))+
+        (F('category__attribute__board__source_rating_2_weight')*F('sr2_avg'))+
+        (F('category__attribute__board__source_rating_3_weight')*F('sr3_avg'))+
+        (F('category__attribute__board__source_rating_4_weight')*F('sr4_avg'))+
+        (F('category__attribute__board__source_rating_5_weight')*F('sr5_avg'))
+        ).annotate(
+        smvc=(F('category__attribute__board__content_rating_1_weight')*5)+
+        (F('category__attribute__board__content_rating_2_weight')*5)+
+        (F('category__attribute__board__content_rating_3_weight')*5)+
+        (F('category__attribute__board__content_rating_4_weight')*5)+
+        (F('category__attribute__board__content_rating_5_weight')*5)+
+        (F('category__attribute__board__source_rating_1_weight')*5)+
+        (F('category__attribute__board__source_rating_2_weight')*5)+
+        (F('category__attribute__board__source_rating_3_weight')*5)+
+        (F('category__attribute__board__source_rating_4_weight')*5)+
+        (F('category__attribute__board__source_rating_5_weight')*5)
+        ).annotate(
+        evr=(
+        ((F('suwr') / F('smvc')) *100)/20))
 
 class Evidence(models.Model):
     title = models.CharField(max_length=150, unique=False, blank=False)
@@ -30,7 +68,9 @@ class Evidence(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, related_name="evidence",null=True, blank=False)
 
-    comment = models.TextField()
+    evrating = EvidenceManager()
+
+
 
 
     def __str__(self):
@@ -51,7 +91,7 @@ class Evidence(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
-        
+
 
 class Analysis(models.Model):
     title = models.CharField(max_length=150, unique=False, blank=False)

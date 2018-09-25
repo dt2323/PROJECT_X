@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container category-board">
+        <div class="page-header">
+            <span class="page-title">
+                {% for catg in category %}
+                  {{ catg.title }}
+                  {% endfor %}
+                <i class="fas fa-pen"></i>
+            </span>
+            <span class="page-actions" style="float: right;">
+                <button class="btn">EVIDENCE RATING:
+                  {% if evidence_stats.avg_category_evr == 1 %}
+                  <font color="red"> VERY WEAK {{ evidence_stats.avg_category_evr }}/5</font>
+                  {% elif evidence_stats.avg_category_evr == 2 %}
+                  <font color="red">  WEAK {{ evidence_stats.avg_category_evr }}/5</font>
+                  {% elif evidence_stats.avg_category_evr == 3 %}
+                  <font color="orange">  MODERATE {{ evidence_stats.avg_category_evr }}/5</font>
+                  {% elif evidence_stats.avg_category_evr == 4 %}
+                  <font color="red">  STRONG {{ evidence_stats.avg_category_evr }}/5</font>
+                  {% elif evidence_stats.avg_category_evr == 5 %}
+                  <font color="red">  VERY STRONG {{ evidence_stats.avg_category_evr }}/5</font>
+                  {% endif %}
+
+                </button>
+                <button class="btn">
+                    <i class="fas fa-cog"></i> Triggers</button>
+            </span>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card">
+
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                      {% for evidence in object_list %}
+
+                        <div class="row">
+                            <div class="col-md-2">
+                              <a href="{% url 'evidence:single' username=evidence.user.username pk=evidence.pk %}">
+                                <img src="/static/images/logos/giz.png" class="item-img" /></a>
+
+                            </div>
+                            <div class="col-md-10 item-details">
+                                <div>
+                                    <span class="heading">{{ evidence.title }}</span>
+                                    <span class="date">{{ evidence.created_at|timesince }} ago</span>
+                                </div>
+                                <div>
+                                    <span class="tags">
+                                        <i class="fas fa-tags"></i>
+                                        {{ evidence.research_type }}, {{ evidence.content_type }}
+                                    </span>
+                                    <span class="user">Contributor: {{ evidence.user }}</span>
+                                </div>
+                                <p>{{ evidence.contributors_note|truncatewords:"30" }}</p>
+                                <p>Evidence Rating: {{ evidence.evr }}</p>
+                                <time class="time"><a href="{% url 'evidence:single' username=evidence.user.username pk=evidence.pk %}">View Evidence</a></time>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Data Points</h5>
+                        <canvas id="data-points-chart" width="400" height="400"></canvas>
+                        <p>Catg Evidence Rating: {{ evidence_stats.avg_category_evr }}</p>
+                        <p>
+                          <b>Content Types</b>
+                          {% for dpcounters in contentcount %}
+                          <li>{{dpcounters.content_type}}: {{dpcounters.content_type_count}}</li>
+                          {% endfor %}
+                        </p>
+                        <p>
+                          <b>Research Type</b>
+                          {% for rcounters in researchcount %}
+                          <li>{{rcounters.research_type}}: {{rcounters.research_type_count}}</li>
+                          {% endfor %}
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Contributors</h5>
+                        <canvas id="contributors-chart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Board Activity</h5>
+                        <p>When done with everything else, implement: https://django-activity-stream.readthedocs.io/en/latest/index.html</p>
+                        {% for evidence in evidence_list %}
+                        <div class="row activity">
+                            <div class="col-md-3">
+                                <img src="/static/images/user.png" />
+                            </div>
+                            <div class="col-md-9">
+                                <span>
+                                    Daniel commented on "vulnerability assessment in south africa"
+                                    <br />
+                                    <span>{{evidence.time_elapsed}}</span>
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+        </div>
+</div>
+    {% endblock %}
