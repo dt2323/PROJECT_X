@@ -1,9 +1,11 @@
 from django.conf.urls import include, url
-
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 from . import views
 
 urlpatterns = [
+               url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                url(r'^admin/', include(admin.site.urls)),
                url(r'^', include('app.urls')),
                url(r'^$', views.HomePage.as_view(),name='home'),#This is the first homepage
@@ -11,6 +13,8 @@ urlpatterns = [
                url(r'^accounts/', include('django.contrib.auth.urls')),#This connects the authorisation tools that Django has in the backend
                url(r'^test/$',views.TestPage.as_view(),name='test'),
                url(r'^thanks/$',views.ThanksPage.as_view(),name='thanks'),
-               url(r'^evidence/', include('evidence.urls'),name='evidence'),
+               url(r'^evidence/', include('evidence.urls', namespace='evidence')),
+               url(r'^board/', include('board.urls', namespace='board')),
+               url(r'^category/', include('category.urls', namespace='category')),
 
-               ]
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -7,11 +7,12 @@
 		<p>Publisher: {{ evidence.publisher }}</p>
 		<p>Content Type: {{ evidence.content_type }}</p>
 		<p>Research Type: {{ evidence.research_type }}</p>
-		<strong>Added to {{ evidence.category }} by {{ evidence.user.username }} on {{ evidence.created_at }} </strong>
+		<strong>Added to {{ evidence.category }} by {{ evidence.user.username }} {{ evidence.created_at|timesince }} ago</strong>
 		<p>Last updated: {{ evidence.last_updated }}</p>
+		<p>Evidence Rating: {{ evidence.evr }}/5</p>
 		<p><a href=" {{ evidence.website }}" >Link to Evidence</a></p>
 		<p><a class="btn btn-default" href="{% url 'evidence:evidence_update' pk=evidence.pk %}">Update this Evidence</a></p>
-		<p><a class="btn btn-primary" href="{% url 'evidence:filtered_evidence' slug=evidence.category.slug %}">View the Category</a></p>
+		<p><a class="btn btn-primary" href="{% url 'category:filtered_evidence' slug=evidence.category.slug %}">View the Category</a></p>
 		<p><a class="btn btn-danger" href="{% url 'evidence:evidence_delete' pk=evidence.pk %}">Delete Evidence</a></p>
 
 		<h2>Analysis Summary</h2>
@@ -25,7 +26,22 @@
 
 
 		<strong> Detailed Analysis </strong>
+		{% if evidence.cr1_avg %}
+				<h4>Content Ratings</h4>
+					<p>{{ object.category.attribute.board.content_rating_1_title }} Average Rating: {{ evidence.cr1_avg }}</p>
+					<p>{{ object.category.attribute.board.content_rating_2_title }} Average Rating: {{ evidence.cr2_avg }}</p>
+					<p>{{ object.category.attribute.board.content_rating_3_title }} Average Rating: {{ evidence.cr3_avg }}</p>
+					<p>{{ object.category.attribute.board.content_rating_4_title }} Average Rating: {{ evidence.cr4_avg }}</p>
+					<p>{{ object.category.attribute.board.content_rating_5_title }} Average Rating: {{ evidence.cr5_avg }}</p>
 
+				<h4>Source Ratings</h4>
+					<p>{{ object.category.attribute.board.source_rating_1_title }} Average Rating: {{ evidence.sr1_avg }}</p>
+					<p>{{ object.category.attribute.board.source_rating_2_title }} Average Rating: {{ evidence.sr2_avg }}</p>
+					<p>{{ object.category.attribute.board.source_rating_3_title }} Average Rating: {{ evidence.sr3_avg }}</p>
+					<p>{{ object.category.attribute.board.source_rating_4_title }} Average Rating: {{ evidence.sr4_avg }}</p>
+					<p>{{ object.category.attribute.board.source_rating_1_title }} Average Rating: {{ evidence.sr5_avg }}</p>
+
+				{% endif %}
 		<hr>
 			{% for analyses in evidence.analysis.all %}
 			    <div class="analysis">
@@ -34,16 +50,16 @@
 							<div class="date">{{ analyses.created_at }}</div>
 			        <strong>By {{ analyses.analyst }}</strong>
 
-			        <p><strong> Content Rating Area 1 </strong> {{ analyses.content_rating_1 }}</p>
+			        <p><strong> {{ object.category.attribute.board.content_rating_1_title }} </strong> {{ analyses.content_rating_1 }}</p>
 							<p>{{ analyses.content_rating_1_comment }}</p>
 
-							<p><strong> Content Rating Area 2 </strong> {{ analyses.content_rating_2 }}</p>
+							<p><strong> {{ object.category.attribute.board.content_rating_2_title }} </strong> {{ analyses.content_rating_2 }}</p>
 							<p>{{ analyses.content_rating_2_comment }}</p>
 
-							<p><strong> Content Rating Area 3 </strong> {{ analyses.content_rating_3 }}</p>
+							<p><strong> {{ object.category.attribute.board.content_rating_3_title }} </strong> {{ analyses.content_rating_3 }}</p>
 							<p>{{ analyses.content_rating_3_comment }}</p>
 
-							<p><strong> Content Rating Area 4 </strong> {{ analyses.content_rating_4 }}</p>
+							<p><strong> {{ object.category.attribute.board.content_rating_4_title }} </strong> {{ analyses.content_rating_4 }}</p>
 							<p>{{ analyses.content_rating_4_comment|linebreaks }}</p>
 						</br>
 			    </div>
@@ -51,15 +67,6 @@
 			    <p>No analysis here yet :(</p>
 			{% endfor %}
 		</hr>
-
-
-
-
-
-
-<h6>Later, we'll add ratings here if any are given. Naturally, with logic around being logged in</h6>
-
-
 		</div>
 	</div>
 </div>

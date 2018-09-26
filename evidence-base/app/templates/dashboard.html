@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h2 class="page-title">Evidence Boards</h2>
+
+<div class="container">
+  <div class="row">
+    {% for c_evidence in country_evidence %}
+
+      <div class="col-md-3">
+          <div class="card">
+              <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+              <div class="card-body">
+                  <h5 class="card-title">
+                      <img src="{{c_evidence.image}}" /> FBF - {{c_evidence.title}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div class="card-stats">
+                      <span>Data points: 89</span>
+                      <span>
+                          <i class="fas fa-users"></i> 32</span>
+                  </div>
+                  <a href="#" class="">MORE</a>
+              </div>
+          </div>
+      </div>
+
+      {% endfor %}
+    </div>
+    {{var}}
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container category-board">
+        <div class="page-header">
+            <span class="page-title">
+                Category A
+                <i class="fas fa-pen"></i>
+            </span>
+            <span class="page-actions" style="float: right;">
+                <button class="btn">RATING: STRONG</button>
+                <button class="btn">
+                    <i class="fas fa-cog"></i> Triggers</button>
+            </span>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+
+                        {% for evidence in evidence_list %}
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="/static/images/logos/giz.png" class="item-img" />
+                            </div>
+                            <div class="col-md-10 item-details">
+                                <div>
+                                    <span class="heading">Vulnerability Assessment</span>
+                                    <span class="date">{{evidence.time_elapsed}}</span>
+                                </div>
+                                <div>
+                                    <span class="tags">
+                                        <i class="fas fa-tags"></i>
+                                        {% for tag in evidence.tags %}
+                                            {{tag}}
+                                        {% endfor %}
+                                    </span>
+                                    <span class="user">Jane Doe</span>
+                                </div>
+                                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Data Points</h5>
+                        <canvas id="data-points-chart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Contributors</h5>
+                        <canvas id="contributors-chart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Board Activity</h5>
+                        {% for evidence in evidence_list %}
+                        <div class="row activity">
+                            <div class="col-md-3">
+                                <img src="/static/images/user.png" />
+                            </div>
+                            <div class="col-md-9">
+                                <span>
+                                    Daniel commented on "vulnerability assessment in south africa"
+                                    <br />
+                                    <span>{{evidence.time_elapsed}}</span>
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+        </div>
+</div>
+    {% endblock %}

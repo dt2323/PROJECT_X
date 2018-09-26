@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="page-title">Create an evidence board</h2>
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+
+                        <form class="multi-step-form" action="">
+                            <ul class="steps">
+                                <li>
+                                    <span class="active">1</span> Details</li>
+                                <li>
+                                    <span>2</span> Categories</li>
+                                <li>
+                                    <span>3</span> Weight Settings</li>
+                            </ul>
+
+                            <div class="tab">
+                                <button class="btn">Add Weight
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <div class="attribute">
+                                    <a data-toggle="collapse" href="#collapseAttribute" role="button" aria-expanded="false" aria-controls="collapseAttribute">
+                                        Weight 1
+                                        <i class="fas fa-caret-down"></i>
+                                    </a>
+                                </div>
+                                <div class="collapse row" id="collapseAttribute">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="boardWeightName1" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label for="boardWeightRange1">Weight Range</label>
+                                            <input type="range" class="form-control-range" id="boardWeightRange1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn add-weight-btn">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="overflow:auto;">
+                                <div style="float:left;">
+                                    <button type="button" id="cancelBtn" class="btn">Cancel</button>
+                                </div>
+                                <div style="float:right;">
+                                    <button type="button" id="prevBtn" class="btn" onclick="nextPrev(-1)">Previous</button>
+                                    <button type="button" id="nextBtn" class="btn" onclick="nextPrev(1)">Next</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+{% endblock %}

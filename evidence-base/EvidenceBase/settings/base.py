@@ -1,6 +1,10 @@
 
 import os
 import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
@@ -18,6 +22,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 INSTALLED_APPS = [
                   'django.contrib.admin',
+                  'django.contrib.admindocs',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
                   'django.contrib.sessions',
@@ -89,6 +94,10 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
                     os.path.join(BASE_DIR, "app", "static"),
+                    # os.path.join(BASE_DIR, "board", "static"),
+                    # os.path.join(BASE_DIR, "attribute", "static"),
+                    # os.path.join(BASE_DIR, "category", "static"),
+                    # os.path.join(BASE_DIR, "evidence", "static"),
                     )
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")

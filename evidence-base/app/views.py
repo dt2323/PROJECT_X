@@ -8,6 +8,15 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
+def dashboard(request):
+    return render(request, 'dashboard.html', {
+        'country_evidence': [
+            {
+                'image': '/static/images/flags/'+country+'.png',
+                'title': country.capitalize()
+            } for country in ['kenya', 'rwanda', 'egypt', 'south-africa'] * 2
+        ]
+    })
 
 def health(request):
     state = {"status": "UP"}
