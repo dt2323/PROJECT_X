@@ -106,7 +106,7 @@ def add_analysis_to_evidence(request, pk):
         if form.is_valid():
             analysis = form.save(commit=False)
             analysis.evidence = evidence
-            analysis.analyst  = request.user
+            analysis.analyst = request.user
             analysis.save()
             return redirect("evidence:single", username=evidence.user, pk=evidence.pk)
     else:

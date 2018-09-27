@@ -62,7 +62,9 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
-    <script src="js/charts.js"></script>
+    <!--<script src="{% static 'js/charts.js' %}"></script>-->
+
+    {% block scripts %}{% endblock %}
 
   </body>
 </html>
