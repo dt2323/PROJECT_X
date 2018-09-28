@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
-
+from . import forms
+from category.forms import CategoryForms
 from django.shortcuts import render
 
 
 def add_board(request):
-    return render(request, 'board/add_board.html')
+    form = forms.BoardForm()
+    return render(request, 'board/add_board.html', { 'board_form': form, 'category_form': CategoryForms })
 
 
 def view_board(request):

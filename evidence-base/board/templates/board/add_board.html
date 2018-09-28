@@ -24,10 +24,12 @@
                             </ul>
 
                              <div class="tab" tabName="board-details">
-                                <div class="row">
+                                <div class="row py-4">
                                     <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="boardName">Name of the board</label>
+                                        {% csrf_token %}
+                                        {{ board_form }}
+                                        <!--<div class="form-group">
+                                            <label for="boardName">Title of the board</label>
                                             <input type="text" class="form-control" id="boardName" placeholder="">
                                         </div>
                                         <div class="form-group">
@@ -41,7 +43,7 @@
                                         <div class="form-group">
                                             <label for="boardTags">Tags</label>
                                             <input type="text" class="form-control" id="boardTags" placeholder="">
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <div class="col-md-3 upload-pic">
                                         <i class="fas fa-images"></i>
@@ -53,30 +55,39 @@
                                 <button class="btn">Add Attribute
                                     <i class="fas fa-plus"></i>
                                 </button>
-                                <div class="attribute">
-                                    <a data-toggle="collapse" href="#collapseAttribute" role="button" aria-expanded="false" aria-controls="collapseAttribute">
-                                        Attribute 1
-                                        <i class="fas fa-caret-down"></i>
-                                    </a>
-                                </div>
-                                <div class="collapse row" id="collapseAttribute">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="boardCategoryName1">Category name</label>
-                                            <input type="text" class="form-control" id="boardCategoryName1" placeholder="">
+                                <!--<div class="attribute">-->
+                                    <!--<a data-toggle="collapse" href="#collapseAttribute" role="button" aria-expanded="false" aria-controls="collapseAttribute">-->
+                                        <!--Attribute 1-->
+                                        <!--<i class="fas fa-caret-down"></i>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <div class="row py-4">
+                                    {% for field in category_form %}
+                                        <div class="col-md-4">
+                                            {{ field.errors }}
+                                            {{ field.label_tag }} {{ field }}
+                                            {% if field.help_text %}
+                                            <p class="help">{{ field.help_text|safe }}</p>
+                                            {% endif %}
                                         </div>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label for="boardCategoryName1">Describe the category</label>
-                                            <input type="text" class="form-control" id="boardCategoryName1" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <button class="btn add-category-btn">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
+                                    {% endfor %}
+                                    <!--<div class="col-md-4">-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label for="boardCategoryName1">Category name</label>-->
+                                            <!--<input type="text" class="form-control" id="boardCategoryName1" placeholder="">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-">-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label for="boardCategoryName1">Describe the category</label>-->
+                                            <!--<input type="text" class="form-control" id="boardCategoryName1" placeholder="">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-1">-->
+                                        <!--<button class="btn add-category-btn">-->
+                                            <!--<i class="fas fa-plus"></i>-->
+                                        <!--</button>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
 
