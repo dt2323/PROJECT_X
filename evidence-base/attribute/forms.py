@@ -8,14 +8,16 @@ class AttributeForms(forms.Form):
         label="Title of the attribute",
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+
     sub_title = forms.CharField(
         max_length=100,
         label='Sub title of the attribute',
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+
     attribute_description = forms.CharField(
         max_length=300,
         required=True,
         label="Describe the attribute",
-        widget=forms.Textarea({ 'attrs': 'form-control' })
+        widget=forms.Textarea(attrs={'class': 'form-control'})
     )

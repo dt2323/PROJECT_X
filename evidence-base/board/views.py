@@ -6,7 +6,11 @@ from django.shortcuts import render
 
 def add_board(request):
     form = forms.BoardForm()
-    return render(request, 'board/add_board.html', { 'board_form': form, 'category_form': CategoryForms })
+    category_form = CategoryForms()
+    weights_form = forms.WeightsForm()
+
+    return render(request, 'board/add_board.html',
+                  {'board_form': form, 'category_form': category_form, 'weights_form': weights_form})
 
 
 def view_board(request):

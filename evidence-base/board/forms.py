@@ -94,7 +94,11 @@ class WeightsForm(forms.Form):
         widget=forms.NumberInput(attrs={'type': 'range', 'step': '1'})
     )
 
-    source_rating_3_title = forms.CharField(max_length=50, label="Source Characterstic 3")
+    source_rating_3_title = forms.CharField(
+        max_length=50,
+        label="Source Characterstic 3",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
     source_rating_3_weight = forms.IntegerField(
         initial=0,
         widget=forms.NumberInput(attrs={'type': 'range', 'step': '1'})
