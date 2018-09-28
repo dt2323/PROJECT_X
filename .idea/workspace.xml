@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d16325-f019-4e9c-9682-b028d7a2047b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/evidence-base/attribute/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/evidence-base/attribute/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evidence-base/board/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/evidence-base/board/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evidence-base/board/templates/board/add_board.html" beforeDir="false" afterPath="$PROJECT_DIR$/evidence-base/board/templates/board/add_board.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evidence-base/board/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evidence-base/board/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evidence-base/category/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/evidence-base/category/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evidence-base/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/evidence-base/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,97 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="add_board.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/evidence-base/board/templates/board/add_board.html">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/evidence-base/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/category/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/category/models.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/category/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/attribute/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/board/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="24" lean-forward="true" selection-start-column="24" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1">
-              <caret line="45" column="39" lean-forward="true" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/board/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="50" selection-end-column="59" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/board/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evidence-base/board/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="333">
+              <caret line="143" column="3" selection-start-line="143" selection-start-column="3" selection-end-line="143" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -149,6 +59,7 @@
         <option value="$PROJECT_DIR$/evidence-base/category/forms.py" />
         <option value="$PROJECT_DIR$/evidence-base/board/forms.py" />
         <option value="$PROJECT_DIR$/evidence-base/board/templates/board/add_board.html" />
+        <option value="$PROJECT_DIR$/evidence-base/.gitignore" />
       </list>
     </option>
   </component>
@@ -174,50 +85,6 @@
               <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
               <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
               <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-              <item name="attribute" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-              <item name="category" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="evidence-base" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT_X" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PROJECT_X" type="462c0819:PsiDirectoryNode" />
-              <item name="EvidenceBase" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -296,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538055767382</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="evidence board form done&#10;category form done">
+      <created>1538133199191</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1538133199191</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -352,23 +226,10 @@
     <MESSAGE value="added category board page" />
     <MESSAGE value="added tabs on evidence board form" />
     <MESSAGE value="syncing staticfiles generated&#10;added webstorm config files" />
-    <option name="LAST_COMMIT_MESSAGE" value="syncing staticfiles generated&#10;added webstorm config files" />
+    <MESSAGE value="evidence board form done&#10;category form done" />
+    <option name="LAST_COMMIT_MESSAGE" value="evidence board form done&#10;category form done" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/evidence-base/board/templates/board/add_board.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="68" selection-start-line="33" selection-start-column="68" selection-end-line="33" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evidence-base/board/static/js/board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/evidence-base/attribute/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -712,8 +573,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/evidence-base/board/templates/board/add_board.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="-1313">
           <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evidence-base/env.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evidence-base/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="143" column="3" selection-start-line="143" selection-start-column="3" selection-end-line="143" selection-end-column="3" />
         </state>
       </provider>
     </entry>
