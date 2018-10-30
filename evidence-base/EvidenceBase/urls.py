@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 from . import views
 
+
 urlpatterns = [
                url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                url(r'^admin/', include(admin.site.urls)),
@@ -14,6 +15,7 @@ urlpatterns = [
                url(r'^test/$',views.TestPage.as_view(),name='test'),
                url(r'^thanks/$',views.ThanksPage.as_view(),name='thanks'),
                url(r'^evidence/', include('evidence.urls', namespace='evidence')),
+               url(r'^evidence/comments/', include('django_comments.urls')),
                url(r'^board/', include('board.urls', namespace='board')),
                url(r'^category/', include('category.urls', namespace='category')),
 

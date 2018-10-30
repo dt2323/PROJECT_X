@@ -1,0 +1,364 @@
+{% extends "evidence/evidence_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% block evidence_content %}
+<div class="container category-board">
+
+<p></p>
+<h3>Update Analysis of "{{ analysis.evidence.title }}" by {{ analysis.evidence.publisher }}</h3>
+<h6><a href="{{ evidence.website }}" target="_blank">Link to Evidence File</a></h6>
+<h6><a href="{% url 'evidence:view_analysis' pk=analysis.pk slug=analysis.evidence.slug %}"> << Back </a></h6>
+
+
+<form method="POST" class="post-form">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.source.errors }}
+  {{ form.source }}
+
+  <div class="card">
+    <div class="card-body">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#key_findings">1. Key Findings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#content_ratings">2. Content Rating</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#source_ratings">3. Source Rating</a>
+        </li>
+
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane container active" id="key_findings">
+              <div class="the_analyst">
+
+
+<div class="the_analyst">
+            <p> <h6>
+              Title
+           </p> </h6>
+                  <p>
+                {{ form.title.errors }}
+                {{ form.title }}
+                </p>
+
+      </div>
+              <p><h6>
+               Key Finding 1
+             </p></h6>
+                  <p>
+                {{ form.key_finding1.errors }}
+                {{ form.key_finding1 }}
+                </p>
+            <p><h6>
+            Key Finding 2
+          </p></h6>
+                <p>
+                {{ form.key_finding2.errors }}
+                {{ form.key_finding2 }}
+                </p>
+
+                <p><h6>
+              Key Finding 3
+                </p></h6>
+                    <p>
+                {{ form.key_finding3.errors }}
+                {{ form.key_finding3 }}
+                  </p>
+
+
+            </div>
+        </div>
+        <div class="tab-pane container fade" id="content_ratings">
+
+
+
+
+        <!-- CONTENT RATING 1 -->  <div>
+          <p><h6>
+            {% if analysis.evidence.title %}
+           {{ analysis.evidence.category.attribute.board.content_rating_1_title }} Rating
+          </p></h6>
+          <p>
+
+
+        <div class="range-slider">
+          {{ form.content_rating_1.errors }}
+          <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+          <input class="custom-range" type="range" min="0" max="50" id="{{ form.content_rating_1 }}" >
+
+        </div>
+
+          <p>
+          <h6>    {{ analysis.evidence.category.attribute.board.content_rating_1_title }} Comment</h6>
+          {{ form.content_rating_1_comment.errors }}
+          {{ form.content_rating_1_comment }}
+          </p>
+<hr>
+</div>
+
+<!-- CONTENT RATING 2 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.content_rating_2_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.content_rating_2.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range" min="0" max="50" id="{{ form.content_rating_2 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.content_rating_2_title }} Comment</h6>
+  {{ form.content_rating_2_comment.errors }}
+  {{ form.content_rating_2_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+<!-- CONTENT RATING 3 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.content_rating_3_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.content_rating_3.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.content_rating_3 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.content_rating_3_title }} Comment</h6>
+  {{ form.content_rating_3_comment.errors }}
+  {{ form.content_rating_3_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+<!-- CONTENT RATING 4 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.content_rating_4_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.content_rating_4.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.content_rating_4 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.content_rating_4_title }} Comment</h6>
+  {{ form.content_rating_4_comment.errors }}
+  {{ form.content_rating_4_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+<!-- CONTENT RATING 5 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.content_rating_5_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.content_rating_5.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.content_rating_5 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.content_rating_5_title }} Comment</h6>
+  {{ form.content_rating_5_comment.errors }}
+  {{ form.content_rating_5_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+
+
+</div><!--End of content ratings -->
+
+
+
+
+
+
+        <div class="tab-pane container fade" id="source_ratings">
+
+        <!-- SOURCE RATING 1 -->
+        <div>
+          <p><h6>
+
+           {{ analysis.evidence.category.attribute.board.source_rating_1_title }} Rating
+          </p></h6>
+          <p>
+
+
+        <div class="range-slider">
+          {{ form.source_rating_1.errors }}
+          <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+          <input class="custom-range" type="range"  min="0" max="50" id="{{ form.source_rating_1 }}" >
+
+        </div>
+
+          <p>
+          <h6>    {{ analysis.evidence.category.attribute.board.source_rating_1_title }} Comment</h6>
+          {{ form.source_rating_1_comment.errors }}
+          {{ form.source_rating_1_comment }}
+          </p>
+<hr>
+</div>
+
+<!-- SOURCE RATING 2 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.source_rating_2_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.source_rating_2.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.source_rating_2 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.source_rating_2_title }} Comment</h6>
+  {{ form.source_rating_2_comment.errors }}
+  {{ form.source_rating_2_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+<!-- SOURCE RATING 3 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.source_rating_3_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.source_rating_3.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.source_rating_3 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.source_rating_3_title }} Comment</h6>
+  {{ form.source_rating_3_comment.errors }}
+  {{ form.source_rating_3_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+<!-- SOURCE RATING 4 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.source_rating_4_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.source_rating_4.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.source_rating_4 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.source_rating_4_title }} Comment</h6>
+  {{ form.source_rating_4_comment.errors }}
+  {{ form.source_rating_4_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+<!-- SOURCE RATING 5 -->  <div>
+  <p><h6>
+
+   {{ analysis.evidence.category.attribute.board.source_rating_5_title }} Rating
+  </p></h6>
+  <p>
+
+
+<div class="range-slider">
+{{ form.source_rating_5.errors }}
+  <p>  <h6> <span class="range-slider__value">Use the Slider to Rate this Characteristic</span></p></h6>
+
+  <input class="custom-range" type="range"  min="0" max="50" id="{{ form.source_rating_5 }}">
+
+</div>
+
+  <p>
+  <h6>    {{ analysis.evidence.category.attribute.board.source_rating_5_title }} Comment</h6>
+  {{ form.source_rating_5_comment.errors }}
+  {{ form.source_rating_5_comment }}
+  </p>
+
+<hr>
+</div>
+
+
+
+
+</div><!--End of source ratings -->
+      {% endif %}
+    </div>
+</div>
+    <button type="submit" class="save btn btn-primary">Add Analysis</button>
+  </div>
+
+
+
+</form>
+
+</div>
+
+
+
+{% endblock %}

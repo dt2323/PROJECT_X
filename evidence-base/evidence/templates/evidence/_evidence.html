@@ -1,72 +1,254 @@
-<div class="evidence media">
-	<h3>{{ evidence.message_html|safe }}</h3>
-	<div class="media-body">
+<div class="container category-board">
+	<div class="page-header">
+		{% load threadedcomments_tags %}
+		<span class="page-title">
+			{{ evidence.title }}
+		</span>
+		<span class="page-actions" style="float: right;">
+			<a class="btn" href="{% url 'evidence:evidence_update' pk=evidence.pk username=evidence.user.username slug=evidence.slug %}">Update this Evidence</a>
+			<a class="btn btn-warn" href="{% url 'evidence:evidence_delete' pk=evidence.pk username=evidence.user.username slug=evidence.slug %}">Delete Evidence</a>
+			<a class="btn btn-primary" href="{% url 'category:filtered_evidence' slug=evidence.category.slug %}">View the Category</a>
+			<a class="btn btn-primary" href="{% url 'evidence:add_analysis_to_evidence' pk=evidence.pk slug=evidence.slug %}">Add Analysis</a>
+		</span>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-body">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#general">General</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#summary">Analysis Summary</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#reports">Analyst Reports</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#discussions">Discussions</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane container active" id="general">
+						<b>	<p>Contributor's Note:</b> {{ evidence.contributors_note }}</p>
+							<b><p>Publisher:</b> {{ evidence.publisher }}</p>
+							<b><p>Content Type:</b> {{ evidence.content_type }}</p>
+							<b><p>Research Type:</b> {{ evidence.research_type }}</p>
+							<p>
+								<strong>Added to {{ evidence.category }} by {{ evidence.user.username }} {{ evidence.created_at|timesince }} ago
+								</strong>
+							</p>
+							<p>Last updated: {{ evidence.last_updated }}</p>
+							<p>
+								<a href=" {{ evidence.website }}">Link to Evidence</a>
+							</p>
+						</div>
+						<div class="tab-pane container fade" id="summary">
+							<h4> Evidence Strength: {{ evidence.evr|floatformat:'2' }}/5 </h4>
+							<h5>Key Findings</h5>
+							<p> - {{ analysis.key_finding1 }}</p>
+							<p> - {{ analysis.key_finding2 }}</p>
+							<p> - {{ analysis.key_finding3 }}</p>
+							<h5> Aggregate Ratings </h5>
+							{% if evidence.cr1_avg %}
+							<h5>Content Ratings</h5>
+							<p>{{ object.category.attribute.board.content_rating_1_title }} Average Rating: {{ evidence.cr1_avg_checked|floatformat:'2' }}
+							</p>
+							<p>{{ object.category.attribute.board.content_rating_2_title }} Average Rating: {{ evidence.cr2_avg_checked|floatformat:'2' }}
+							</p>
+							<p>{{ object.category.attribute.board.content_rating_3_title }} Average Rating: {{ evidence.cr3_avg_checked|floatformat:'2' }}
+							</p>
+							<p>{{ object.category.attribute.board.content_rating_4_title }} Average Rating: {{ evidence.cr4_avg_checked|floatformat:'2' }}
+							</p>
+							<p>{{ object.category.attribute.board.content_rating_5_title }} Average Rating: {{ evidence.cr5_avg_checked|floatformat:'2' }}
+							</p>
 
-		<strong>Title: {{ evidence.title }} </strong>
-		<p>Contributor's Note: {{ evidence.contributors_note }}</p>
-		<p>Publisher: {{ evidence.publisher }}</p>
-		<p>Content Type: {{ evidence.content_type }}</p>
-		<p>Research Type: {{ evidence.research_type }}</p>
-		<strong>Added to {{ evidence.category }} by {{ evidence.user.username }} {{ evidence.created_at|timesince }} ago</strong>
-		<p>Last updated: {{ evidence.last_updated }}</p>
-		<p>Evidence Rating: {{ evidence.evr }}/5</p>
-		<p><a href=" {{ evidence.website }}" >Link to Evidence</a></p>
-		<p><a class="btn btn-default" href="{% url 'evidence:evidence_update' pk=evidence.pk %}">Update this Evidence</a></p>
-		<p><a class="btn btn-primary" href="{% url 'category:filtered_evidence' slug=evidence.category.slug %}">View the Category</a></p>
-		<p><a class="btn btn-danger" href="{% url 'evidence:evidence_delete' pk=evidence.pk %}">Delete Evidence</a></p>
+							<h5>Source Ratings</h5>
+							<p>{{ object.category.attribute.board.source_rating_1_title }} Average Rating: {{ evidence.sr1_avg_checked|floatformat:'2' }}</p>
+							<p>{{ object.category.attribute.board.source_rating_2_title }} Average Rating: {{ evidence.sr2_avg_checked|floatformat:'2' }}</p>
+							<p>{{ object.category.attribute.board.source_rating_3_title }} Average Rating: {{ evidence.sr3_avg_checked|floatformat:'2' }}</p>
+							<p>{{ object.category.attribute.board.source_rating_4_title }} Average Rating: {{ evidence.sr4_avg_checked|floatformat:'2' }}</p>
+							<p>{{ object.category.attribute.board.source_rating_5_title }} Average Rating: {{ evidence.sr5_avg_checked|floatformat:'2' }}</p>
+							{% else %}
+							<p>No analysis added yet</p>
+							<p>
+								<a class="btn btn-primary" href="{% url 'evidence:add_analysis_to_evidence' pk=evidence.pk slug=evidence.slug %}">Add Analysis</a>
+							</p>
+							{% endif %}
+							<hr>
+						</div>
+						<div class="tab-pane container fade" id="reports">
+							{% for analyses in evidence.analysis.all %}
 
-		<h2>Analysis Summary</h2>
-		<p> Evidence Strength: insert something dynamic to make me pretty </p>
-		<h5>Key Findings</h5>
-		<p> - {{ analysis.key_finding1 }}</p>
-		<p> - {{ analysis.key_finding2 }}</p>
-		<p> - {{ analysis.key_finding3 }}</p>
+							<div class="analysis">
+							<h4>	<strong>{{ analyses.title }}</strong> </h4>
+								<p>{{ analyses.created_at }}, By {{ analyses.analyst }}</p>
+								<p>
+									<a href="{% url 'evidence:view_analysis' pk=analyses.pk slug=evidence.slug %}">View Analysis Page</a>
+							</p>
+							<h5>Key Findings </h5>
+							<ul>
+							<li>
+								{{ analyses.key_finding1 }}
+							</li>
 
-		<p><a class="btn btn-default" href="{% url 'evidence:add_analysis_to_evidence' pk=evidence.pk %}">Analyse Evidence</a></p>
+							<li>
+								{{ analyses.key_finding2 }}
+							</li>
+
+							<li>
+								{{ analyses.key_finding3 }}
+							</li>
+
+						</ul>
 
 
-		<strong> Detailed Analysis </strong>
-		{% if evidence.cr1_avg %}
-				<h4>Content Ratings</h4>
-					<p>{{ object.category.attribute.board.content_rating_1_title }} Average Rating: {{ evidence.cr1_avg }}</p>
-					<p>{{ object.category.attribute.board.content_rating_2_title }} Average Rating: {{ evidence.cr2_avg }}</p>
-					<p>{{ object.category.attribute.board.content_rating_3_title }} Average Rating: {{ evidence.cr3_avg }}</p>
-					<p>{{ object.category.attribute.board.content_rating_4_title }} Average Rating: {{ evidence.cr4_avg }}</p>
-					<p>{{ object.category.attribute.board.content_rating_5_title }} Average Rating: {{ evidence.cr5_avg }}</p>
+								<h5>Analysis of Content</h5>
+								<p>
+								<b>	<em> {{ object.category.attribute.board.content_rating_1_title }}: </em> {{ analyses.content_rating_1 }}/5</b>
+								</p>
+								<p>{{ analyses.content_rating_1_comment }}</p>
 
-				<h4>Source Ratings</h4>
-					<p>{{ object.category.attribute.board.source_rating_1_title }} Average Rating: {{ evidence.sr1_avg }}</p>
-					<p>{{ object.category.attribute.board.source_rating_2_title }} Average Rating: {{ evidence.sr2_avg }}</p>
-					<p>{{ object.category.attribute.board.source_rating_3_title }} Average Rating: {{ evidence.sr3_avg }}</p>
-					<p>{{ object.category.attribute.board.source_rating_4_title }} Average Rating: {{ evidence.sr4_avg }}</p>
-					<p>{{ object.category.attribute.board.source_rating_1_title }} Average Rating: {{ evidence.sr5_avg }}</p>
+								<p>
+							<b>		<em> {{ object.category.attribute.board.content_rating_2_title }}: </em> {{ analyses.content_rating_2 }}/5 </b>
+								</p>
+								<p>{{ analyses.content_rating_2_comment }}</p>
 
-				{% endif %}
-		<hr>
-			{% for analyses in evidence.analysis.all %}
-			    <div class="analysis">
-						<br>
-							<h4>{{ analyses.title }}</h4>
-							<div class="date">{{ analyses.created_at }}</div>
-			        <strong>By {{ analyses.analyst }}</strong>
+								<p>
+							<b>		<em> {{ object.category.attribute.board.content_rating_3_title }}: </em> {{ analyses.content_rating_3 }}/5 </b>
+								</p>
+								<p>{{ analyses.content_rating_3_comment }}</p>
 
-			        <p><strong> {{ object.category.attribute.board.content_rating_1_title }} </strong> {{ analyses.content_rating_1 }}</p>
-							<p>{{ analyses.content_rating_1_comment }}</p>
+								<p>
+								<b>	<em> {{ object.category.attribute.board.content_rating_4_title }}: </em> {{ analyses.content_rating_4 }}/5 </b>
+								</p>
+								<p>{{ analyses.content_rating_4_comment|linebreaks }}</p>
 
-							<p><strong> {{ object.category.attribute.board.content_rating_2_title }} </strong> {{ analyses.content_rating_2 }}</p>
-							<p>{{ analyses.content_rating_2_comment }}</p>
+								<p>
+								<b>	<em> {{ object.category.attribute.board.content_rating_5_title }}: </em> {{ analyses.content_rating_5 }}/5 </b>
+								</p>
+								<p>{{ analyses.content_rating_5_comment|linebreaks }}</p>
 
-							<p><strong> {{ object.category.attribute.board.content_rating_3_title }} </strong> {{ analyses.content_rating_3 }}</p>
-							<p>{{ analyses.content_rating_3_comment }}</p>
+								<h5>Analysis of Source(s)</h5>
+								<p>
+							<b>	<em> {{ object.category.attribute.board.source_rating_1_title }}: </em> {{ analyses.source_rating_1 }}/5 </b>
+								</p>
+								<p>{{ analyses.source_rating_1_comment }}</p>
 
-							<p><strong> {{ object.category.attribute.board.content_rating_4_title }} </strong> {{ analyses.content_rating_4 }}</p>
-							<p>{{ analyses.content_rating_4_comment|linebreaks }}</p>
-						</br>
-			    </div>
-			{% empty %}
-			    <p>No analysis here yet :(</p>
-			{% endfor %}
-		</hr>
+								<p>
+								<b>	<em> {{ object.category.attribute.board.source_rating_2_title }}: </em> {{ analyses.source_rating_2 }}/5 </b>
+								</p>
+								<p>{{ analyses.source_rating_2_comment }}</p>
+
+								<p>
+								<b>	<em> {{ object.category.attribute.board.source_rating_3_title }}: </em> {{ analyses.source_rating_3 }}/5 </b>
+								</p>
+								<p>{{ analyses.source_rating_3_comment }}</p>
+
+								<p>
+								<b>	<em> {{ object.category.attribute.board.source_rating_4_title }}: </em> {{ analyses.source_rating_4 }}/5 </b>
+								</p>
+								<p>{{ analyses.source_rating_4_comment|linebreaks }}</p>
+
+								<p>
+								<b>	<em> {{ object.category.attribute.board.source_rating_5_title }}: </em> {{ analyses.source_rating_5 }}/5 </b>
+								</p>
+								<p>{{ analyses.source_rating_5_comment|linebreaks }}</p>
+								</br>
+			<hr>
+							</div>
+							{% empty %}
+							<p>No analysis here yet :(</p>
+							{% endfor %}
+						</div>
+
+						<div class="tab-pane container fade" id="discussions">
+							<div class="comments">
+								<h5 style="text-align: center;">Discussion for {{ evidence.title }}</h5>
+
+								<div class="comment-list">
+									{% render_comment_list for evidence %}
+								</div>
+								<hr>
+								<h5 style="text-align: center;">Start a new discussion</h5>
+								{% render_comment_form for evidence with parent_id %}
+								</hr>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<div class="card">
+				<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+				<div class="card-body">
+					<h5 class="card-title">Board Activity</h5>
+					<div class="row activity">
+						<div class="col-md-3">
+							<img src="images/user.png" />
+						</div>
+						<div class="col-md-9">
+							<span>
+								Daniel commented on "vulnerability assessment in south africa"
+								<br />
+								<span>7 hours ago</span>
+							</span>
+						</div>
+					</div>
+					<div class="row activity">
+						<div class="col-md-3">
+							<img src="images/user.png" />
+						</div>
+						<div class="col-md-9">
+							<span>
+								Daniel commented on "vulnerability assessment in south africa"
+								<br />
+								<span>7 hours ago</span>
+							</span>
+						</div>
+					</div>
+					<div class="row activity">
+						<div class="col-md-3">
+							<img src="images/user.png" />
+						</div>
+						<div class="col-md-9">
+							<span>
+								Daniel commented on "vulnerability assessment in south africa"
+								<br />
+								<span>7 hours ago</span>
+							</span>
+						</div>
+					</div>
+					<div class="row activity">
+						<div class="col-md-3">
+							<img src="images/user.png" />
+						</div>
+						<div class="col-md-9">
+							<span>
+								Daniel commented on "vulnerability assessment in south africa"
+								<br />
+								<span>7 hours ago</span>
+							</span>
+						</div>
+					</div>
+					<div class="row activity">
+						<div class="col-md-3">
+							<img src="images/user.png" />
+						</div>
+						<div class="col-md-9">
+							<span>
+								Daniel commented on "vulnerability assessment in south africa"
+								<br />
+								<span>7 hours ago</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
 </div>

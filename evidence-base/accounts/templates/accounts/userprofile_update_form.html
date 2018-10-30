@@ -1,0 +1,134 @@
+{% extends "evidence/evidence_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container category-board">
+
+<span class="page-title">
+Update Your Profile
+</span>
+
+<form action="" enctype="multipart/form-data" method="post">
+
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.source.errors }}
+  {{ form.source }}
+
+<div class="card">
+  <div class="card-body">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#professional_details">Professional Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#interests">Interests</a>
+      </li>
+
+    </ul>
+  <div class="tab-content">
+
+      <div class="tab-pane container active" id="profile">
+
+<p><b>First Name</b></p>
+    <p>
+  {{ form.first_name.errors }}
+  {{ form.first_name }}
+  </p>
+
+<p><b>Last Name</b></p>
+    <p>
+  {{ form.last_name.errors }}
+  {{ form.last_name }}
+  </p>
+
+  <p><b>Biography</b></p>
+      <p>
+    {{ form.description.errors }}
+    {{ form.description }}
+    </p>
+
+<p><b>Profile Picture</b></p>
+    <p>
+  {{ form.profile_picture.errors }}
+  {{ form.profile_picture }}
+  </p>
+
+
+
+          </div>
+
+      <div class="tab-pane container fade" id="professional_details">
+
+
+            <p><b>Current Organisation</b></p>
+                <p>
+              {{ form.organisation.errors }}
+              {{ form.organisation }}
+              </p>
+
+            <p><b>Current Position</b></p>
+                <p>
+              {{ form.current_position.errors }}
+              {{ form.current_position }}
+              </p>
+
+            <p><b>Certifications</b></p>
+                <p>
+              {{ form.certifications.errors }}
+              {{ form.certifications }}
+              </p>
+
+            <p><b>Associations</b></p>
+              <p>
+              {{ form.associations.errors }}
+              {{ form.associations }}
+              </p>
+
+            <p><b>Website</b></p>
+              <p>
+              {{ form.website.errors }}
+              {{ form.website }}
+              </p>
+
+              <p><b>Publications</b></p>
+                  <p>
+                {{ form.publications.errors }}
+                {{ form.publications }}
+                </p>
+      </div>
+      <div class="tab-pane container fade" id="interests">
+
+            <p><b>Skills</b></p>
+                <p>
+              {{ form.skills.errors }}
+              {{ form.skills }}
+              </p>
+
+            <p><b>Languages</b></p>
+              <p>
+              {{ form.languages.errors }}
+              {{ form.languages }}
+              </p>
+
+            <p><b>Interests</b></p>
+              <p>
+              {{ form.interests.errors }}
+              {{ form.interests }}
+              </p>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" class="save btn btn-primary" value="Update Profile"/>
+</form>
+
+  </div>
+</div>
+{% endblock %}

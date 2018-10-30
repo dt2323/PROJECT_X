@@ -1,13 +1,94 @@
 {% extends "evidence/evidence_base.html" %}
-
-{% load bootstrap3 %}
-
+{% load static %}
 {% block evidence_content %}
-<h4>Add New Evidence</h4>
-<form method="POST" action="{% url 'evidence:create_evidence' %}" id="EvidenceForm">
-	{% csrf_token %}
-	{% bootstrap_form form %}
-	<input type="submit" value="Post" class="btn btn-primary btn-large">
+
+<div class="container category-board">
+
+<p></p>
+<h3>Add Evidence to "{{ category.title }}" - {{ category.attribute.title }}</h3>
+
+<form action=""  method="post">
+  {% csrf_token %}
+  {{ evidence_form.non_field_errors }}
+  {{ evidence_form.source.errors }}
+  {{ evidence_form.source }}
+
+  <div class="card">
+    <div class="card-body">
+
+              <div class="the_analyst">
+
+            <p> <h6>
+              Title
+           </p> </h6>
+                  <p>
+                {{ evidence_form.title.errors }}
+                {{ evidence_form.title }}
+                </p>
+
+              <p><h6>
+               Contributors Note
+             </p></h6>
+                  <p>
+                {{ evidence_form.contributors_note.errors }}
+                {{ evidence_form.contributors_note }}
+                </p>
+            <p><h6>
+            Link to Evidence (Reference)
+          </p></h6>
+                <p>
+                {{ evidence_form.website.errors }}
+                {{ evidence_form.website }}
+                </p>
+
+                <p><h6>
+              Publisher (Author)
+                </p></h6>
+                    <p>
+                {{ evidence_form.publisher.errors }}
+                {{ evidence_form.publisher }}
+                  </p>
+
+		<p><h6>
+	Publication Date
+		</p></h6>
+				<p>
+		{{ evidence_form.publication_date.errors }}
+		{{ evidence_form.publication_date }}
+			</p>
+
+			Content Type
+				</p></h6>
+						<p>
+				{{ evidence_form.content_type.errors }}
+				{{ evidence_form.content_type }}
+					</p>
+
+					<h6>
+					Research Type
+						</p></h6>
+								<p>
+						{{ evidence_form.research_type.errors }}
+						{{ evidence_form.research_type }}
+							</p>
+
+							<h6>
+							Confirm Category
+								</p></h6>
+										<p>
+								{{ evidence_form.category.errors }}
+								{{ evidence_form.category }}
+									</p>
+
+
+
+	</div>
+</div>
+
+
 </form>
 
+<button type="submit" class="save btn btn-primary">Add Evidence</button>
+</div>
+</div>
 {% endblock %}

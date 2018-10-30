@@ -1,9 +1,94 @@
 {% extends "evidence/evidence_base.html" %}
+{% load static %}
 {% block evidence_content %}
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update Evidence"/>
+<div class="container category-board">
+
+<p></p>
+<h3>Update Evidence Details</h3>
+
+<form action=""  method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.source.errors }}
+  {{ form.source }}
+
+  <div class="card">
+    <div class="card-body">
+
+              <div class="the_analyst">
+
+            <p> <h6>
+              Title
+           </p> </h6>
+                  <p>
+                {{ form.title.errors }}
+                {{ form.title }}
+                </p>
+
+              <p><h6>
+               Contributors Note
+             </p></h6>
+                  <p>
+                {{ form.contributors_note.errors }}
+                {{ form.contributors_note }}
+                </p>
+            <p><h6>
+            Link to Evidence (Reference)
+          </p></h6>
+                <p>
+                {{ form.website.errors }}
+                {{ form.website }}
+                </p>
+
+                <p><h6>
+              Publisher (Author)
+                </p></h6>
+                    <p>
+                {{ form.publisher.errors }}
+                {{ form.publisher }}
+                  </p>
+
+		<p><h6>
+	Publication Date
+		</p></h6>
+				<p>
+		{{ form.publication_date.errors }}
+		{{ form.publication_date }}
+			</p>
+
+			Content Type
+				</p></h6>
+						<p>
+				{{ form.content_type.errors }}
+				{{ form.content_type }}
+					</p>
+
+					<h6>
+					Research Type
+						</p></h6>
+								<p>
+						{{ form.research_type.errors }}
+						{{ form.research_type }}
+							</p>
+
+							<h6>
+							Confirm Category
+								</p></h6>
+										<p>
+								{{ form.category.errors }}
+								{{ form.category }}
+									</p>
+
+
+
+	</div>
+</div>
+
+
 </form>
 
+<button type="submit" class="save btn btn-primary">Update Evidence</button>
+</div>
+</div>
 {% endblock %}
