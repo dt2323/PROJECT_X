@@ -171,6 +171,7 @@ def add_analysis_to_evidence(request, pk, slug):
         if form.is_valid():
             analysis = form.save(commit=False)
             analysis.evidence = evidence
+<<<<<<< HEAD
             analysis.analyst  = request.user
             if analysis.content_rating_1 == "0":
                 analysis.content_rating_1 = None
@@ -214,6 +215,9 @@ def add_analysis_to_evidence(request, pk, slug):
             else:
                 analysis.source_rating_5 = math.floor(int(analysis.source_rating_5)/10)
 
+=======
+            analysis.analyst = request.user
+>>>>>>> evbase1
             analysis.save()
             return redirect("evidence:single", pk=evidence.pk, slug=evidence.slug)
     else:
