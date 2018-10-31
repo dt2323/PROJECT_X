@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if userprofile.first_name %}
+<span class="page-title">
+{{ userprofile.first_name }} {{userprofile.last_name }}
+</span>
+<h5>Profile</h5>
+<p><b>Biography</b></p>
+<p>{{ userprofile.description }}</p>
+
+<h4>Professional Details</h4>
+<h6><a href="{% url 'accounts:updateprofile' slug=userprofile.slug %}#professional_details" >Edit Professional Details</a></h6>
+<b>Website:</b> <p>{{ userprofile.website }}</p>
+<p>Organisation: {{ userprofile.organisation }}</p>
+<p>Current Position: {{ userprofile.organisation.current_position }}</p>
+<p><b>Publications:</b> {{ userprofile.publications }}</p>
+<p><b>Associations:</b> {{ userprofile.associations }}</p>
+<p><b>Certifications:</b> {{ userprofile.certifications }}</p>
+
+<b>Interests</b>
+<p>{{ userprofile.interests }}</p>
+
+<p><b>Skills:</b> {{ userprofile.skills }}</p>
+
+<p><b>Languages:</b> {{ userprofile.languages }}</p>
+
+{% if userprofile.profile_picture %}
+<img class="img-thumbnail" src="{{ userprofile.profile_picture.url }}" width=240, alt="No profile image" />
+
+{% endif %}
+<h6><a href="{% url 'accounts:updateprofile' slug=userprofile.slug %}" >Update Profile</a></h6>
+{% else %}
+<h5>Looks like you haven't setup your Evidence Base profile yet. Let's create it.</h5>
+<h6><a href="{% url 'accounts:updateprofile' slug=userprofile.slug %}" >Create Profile</a></h6>
+
+{% endif %}
+
+{% endblock %}

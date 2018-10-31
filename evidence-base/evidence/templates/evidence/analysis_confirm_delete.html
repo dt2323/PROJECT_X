@@ -1,0 +1,32 @@
+{% extends "evidence/evidence_base.html" %}
+
+{% block content %}
+<div class="comment-card">
+
+
+<span class="page-title">
+<h4>Delete {{ analysis.title }}?</h4>
+
+</span>
+<p style="text-align:center">This analysis was added to <b> {{ analysis.evidence.title }} </b> by <b>{{ analysis.analyst.username }}</b>
+{{ analysis.created_at|timesince }} ago </p>
+
+
+<p>
+
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete <b>"{{ object }}"</b> from <b>{{ analysis.evidence.title }}</b>?
+  You will lose all comments and ratings related to this analysis.
+    This action cannot be undone. </p>
+    <input class="btn btn-danger" type="submit" value="Yes, Delete!" />
+</form>
+</p>
+<script>
+function goBack() {
+    window.history.back()
+}
+</script>
+<button class="btn btn-primary" onclick="goBack()">No, go back</button>
+</div>
+{% endblock %}

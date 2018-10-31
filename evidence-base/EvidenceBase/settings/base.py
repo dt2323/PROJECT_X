@@ -27,9 +27,12 @@ INSTALLED_APPS = [
                   'django.contrib.contenttypes',
                   'django.contrib.sessions',
                   'django.contrib.messages',
-                  'django.contrib.staticfiles',
+                  #'django.contrib.staticfiles', #Disabled temporarily for development
                   'livereload',
                   'app',
+                  'threadedcomments',
+                  'django_comments',
+                  'django.contrib.sites',
                   'bootstrap3',
                   'accounts',
                   'evidence',
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
                   'attribute',
                   'board',
                   ]
+
+COMMENTS_APP = 'threadedcomments'
+SITE_ID = 1
 
 MIDDLEWARE = [
               'django.middleware.security.SecurityMiddleware',
@@ -90,11 +96,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 
 STATICFILES_DIRS = (
                     os.path.join(BASE_DIR, "app", "static"),
-                    # os.path.join(BASE_DIR, "board", "static"),
+                    # os.path.join(BASE_DIR, "staticfiles", "media"),
                     # os.path.join(BASE_DIR, "attribute", "static"),
                     # os.path.join(BASE_DIR, "category", "static"),
                     # os.path.join(BASE_DIR, "evidence", "static"),
@@ -102,7 +108,10 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-#THese are Login and Logout page URLs'. They are temporary.
+MEDIA_URL = '/staticfiles/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/media')
+
+#These are Login and Logout page URLs'. They are temporary.
 LOGIN_REDIRECT_URL = 'test'
 LOGOUT_REDIRECT_URL = 'thanks'
 

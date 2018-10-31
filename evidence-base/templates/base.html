@@ -15,7 +15,6 @@
     <!-- Temporary master css -->
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-
   </head>
 
   <body>
@@ -54,6 +53,7 @@
     {% endblock %}
 
 
+    {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -62,9 +62,76 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+
+    <script src="staticfiles/js/charts.js"></script>
+
+
+
+    <script>// For tabs
+         $(function() {
+           // Javascript to enable link to tab
+           var hash = document.location.hash;
+           if (hash) {
+             console.log(hash);
+             $('.nav-tabs a[href=\\'+hash+']').tab('show');
+           }
+
+           // Change hash for page-reload
+           $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+             window.location.hash = e.target.hash;
+           });
+         });
+     </script>
+
+<!-- rangeSliders -->
+<script>
+
+var rangeValues =
+[
+  "0 - Only use Zero if you do not wish to provide a rating",
+  "1 - Very Weak",
+  "2 - Weak",
+  "3 - Moderate",
+  "4 - Strong",
+  "5 - Very Strong"
+];
+
+var valuesList =
+[
+  0,0,0,0,0,0,0,0,0,0
+]
+
+var rangeSlider = function(){
+  var slider = $('.range-slider'),
+      range = $('.custom-range'),
+      value = $('.range-slider__value');
+
+  slider.each(function(){
+
+    value.each(function(){
+      var value = $(this).next().attr('value');
+ var val = rangeValues[Math.floor(value/10)];
+      $(this).html(val);
+    });
+
+    range.on('input', function(){
+      var val = Math.floor(this.value/10);
+      valuesList[this.id] = val;
+  $(this).prev(value).html(rangeValues[val]);
+    });
+
+
+  });
+};
+
+rangeSlider();
+</script>
+
+
     <!--<script src="{% static 'js/charts.js' %}"></script>-->
 
-    {% block scripts %}{% endblock %}
 
+
+{% endblock %}
   </body>
 </html>

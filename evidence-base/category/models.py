@@ -18,7 +18,7 @@ class Category(models.Model):
 
     user = models.ForeignKey(Current_user, related_name="category")
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(allow_unicode=True, unique=False)
+    slug = models.SlugField(allow_unicode=True, unique=False, max_length=160)
     attribute = models.ForeignKey(Attribute, related_name="category",null=True, blank=False)
 
     def __str__(self):

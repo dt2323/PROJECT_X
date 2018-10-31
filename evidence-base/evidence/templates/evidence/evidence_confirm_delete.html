@@ -1,20 +1,31 @@
 {% extends "evidence/evidence_base.html" %}
 
-{% block evidence_content %}
+{% block content %}
+<div class="comment-card">
 
-<h1>{{ evidence.title }}</h1>
+
+<span class="page-title">
+<h4>Delete {{ evidence.title }}?</h4>
+
+</span>
+<p style="text-align:center">This evidence was added to <b> {{ evidence.category }} </b> by <b>{{ evidence.user.username }}</b>
+{{ evidence.created_at|timesince }} ago </p>
+
+
+<p>
+
 <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?
+    <p>Are you sure you want to delete <b>"{{ object }}"</b> from <b>{{ evidence.category }}</b>?
+  You will lose all analysis related to the evidence.
     This action cannot be undone. </p>
-    <input type="submit" value="Yes, Delete!" />
+    <input class="btn btn-danger" type="submit" value="Yes, Delete!" </button>
 </form>
-
+</p>
 <script>
 function goBack() {
     window.history.back()
 }
 </script>
-<button onclick="goBack()">No, go back</button>
-
-
+<button class="btn btn-primary" onclick="goBack()">No, go back</button>
+</div>
 {% endblock %}
