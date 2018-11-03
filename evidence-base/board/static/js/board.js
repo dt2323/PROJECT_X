@@ -2,13 +2,13 @@
 
 $( document ).ready(function() {
 
-    var tablist = [ 'boardDetails', 'attributeDetails', 'weightSettings' ];
+    var tablist = [ 'boardDetails', 'boardTags', 'weightSettings' ];
 
     var currentTab = 0;
 
     var tabs = {
         boardDetails: $('div.tab[tabname="board-details"]'),
-        attributeDetails: $('div.tab[tabname="attribute-details"]'),
+        boardTags: $('div.tab[tabname="board-tags"]'),
         weightSettings: $('div.tab[tabname="weight-settings"]')
     };
 

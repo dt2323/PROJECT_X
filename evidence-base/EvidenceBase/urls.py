@@ -4,9 +4,11 @@ from django.conf import settings
 from django.contrib import admin
 from . import views
 
-
+if settings.DEBUG:
+    import debug_toolbar
 urlpatterns = [
                url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+               url(r'^__debug__/', include(debug_toolbar.urls)),
                url(r'^admin/', include(admin.site.urls)),
                url(r'^', include('app.urls')),
                url(r'^$', views.HomePage.as_view(),name='home'),#This is the first homepage
@@ -19,4 +21,4 @@ urlpatterns = [
                url(r'^board/', include('board.urls', namespace='board')),
                url(r'^category/', include('category.urls', namespace='category')),
 
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

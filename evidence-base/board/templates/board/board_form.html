@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h2 class="page-title">Create an Evidence Board</h2>
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+
+                        <form action="" class="multi-step-form" method="post">
+                            <ul class="steps">
+                                <li class="tab-nav" tabNumber="0">
+                                    <span class="active">1</span>Board Description</li>
+                                <li class="tab-nav" tabNumber="1">
+                                    <span>2</span>Board Tags</li>
+                                <li class="tab-nav" tabNumber="2">
+                                    <span>3</span>Evidence Weight Settings</li>
+                            </ul>
+
+                             <div class="tab" tabName="board-details">
+                                <div class="row py-4">
+                                    <div class="col-md-12">
+                                        {% csrf_token %}
+
+
+                                          {{ board_form.title.errors }}
+                                <h6>  <p>{{ board_board_form.title.label }}</p></h6>
+                                    <p>    {{ board_form.title }} </p>
+
+                                    </div>
+                                <div class="col-md-12">
+                                  {{ board_form.sub_title.errors }}
+                        <h6>  <p>{{ board_form.sub_title.label }}</p></h6>
+                                <p>{{ board_form.sub_title }}</p>
+                                </div>
+
+                                <div class="col-md-12">
+                                  {{ board_form.board_description.errors }}
+                        <h6>  <p>{{ board_form.board_description.label }}</p></h6>
+                                <p>{{ board_form.board_description }}</p>
+                                </div>
+
+
+                            </div>
+                            </div> <!--End of board details tab -->
+
+                             <div class="tab" tabName="board-tags">
+                                <button class="btn">Add Attribute (if useful)
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <!--<div class="attribute">-->
+                                    <!--<a data-toggle="collapse" href="#collapseAttribute" role="button" aria-expanded="false" aria-controls="collapseAttribute">-->
+                                        <!--Attribute 1-->
+                                        <!--<i class="fas fa-caret-down"></i>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <div class="row py-4">
+
+                                        <div class="col-md-4">
+
+                                            <p class="help"></p>
+
+                                        </div>
+
+
+                                </div>
+                            </div> <!--End of board tags-->
+
+                            <div class="tab" tabName="weight-settings">
+                                <button class="btn">Add Weight
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <!--<div class="attribute">-->
+                                    <!--<a data-toggle="collapse" href="#collapseAttribute" role="button" aria-expanded="false" aria-controls="collapseAttribute">-->
+                                        <!--Weight 1-->
+                                        <!--<i class="fas fa-caret-down"></i>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <div class="row py-4">
+                <!-- CONTENT RATING 1 -->  <div class="col-md-3 py-2 px-1">
+                                          {{ board_form.content_rating_1_title.errors }}
+                                        <h6> <p>{{ board_form.content_rating_1_title.label }}</p> </h6>
+
+                                        <p>{{ board_form.content_rating_1_title }}</p>
+
+                                        </div>
+                                      <div class="col-md-3 py-2 px-1">
+                                        <div class="range-slider">
+                                          {{ board_form.content_rating_1_weight.errors }}
+                                          <p>  <h6> <span class="range-slider__value">Use the Slider to Assign a Weight to this Characteristic</span></p></h6>
+
+                                          <input class="custom-range" type="range" value="0" min="0" max="50" id="{{ board_form.content_rating_1_weight }}" >
+
+                                        </div>
+
+                                      </div>
+
+                                </div> <!--End of row-->
+
+<button type="submit" class="save btn btn-primary">Create Board</button>
+                            </div> <!--End of weight settings-->
+
+                            <div style="overflow:auto;">
+                                <div style="float:left;">
+                                    <button type="button" id="cancelBtn" class="btn">Cancel</button>
+                                </div>
+                                <div style="float:right;">
+                                    <button type="button" id="prevBtn" class="btn">Previous</button>
+                                    <button type="button" id="nextBtn" class="btn">Next</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+<script src="{% static 'js/board.js' %}"></script>
+<script src="{% static 'js/board-rangesliders.js' %}"></script>
+{% endblock %}

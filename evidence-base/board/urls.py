@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    url('create/', views.add_board, name='create_board'),
-    url('view/', views.view_board, name='view_board'),
+    url('create/', views.create_board, name='create_board'),
+    url(r'^view/(?P<slug>[-\w]+)/(?P<pk>\d+)/$', views.ViewBoard.as_view(), name='view_board'),
 ]

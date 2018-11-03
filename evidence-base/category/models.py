@@ -2,13 +2,15 @@ from django.db import models
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-
+from decimal import Decimal
+from django.db.models import Count, Avg, IntegerField, F, Q, Case, Value, When, DecimalField, FloatField, ExpressionWrapper, CharField, Sum
 import misaka
 from django.contrib.auth import get_user_model
 Current_user = get_user_model()
 
 # Models from our applications here
 from attribute.models import Attribute
+
 
 # Create your models here.
 class Category(models.Model):

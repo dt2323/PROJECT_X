@@ -5,8 +5,8 @@
 
     <div class="page-header">
         <span class="page-title">
-            FBF - Kenya
-            <i class="fas fa-pen"></i>
+            {{board.title}} / {{ board.sub_title }}
+
         </span>
         <span class="page-actions" style="float: right;">
             <button class="btn">Attribute 1
@@ -24,6 +24,22 @@
                     <h5 class="card-title">Categories
                         <button class="btn">New Category</button>
                     </h5>
+
+
+                      <h6>Categories...
+                        {% for catg in category %}
+                    <p>  {{ catg.category_description }} -  or {{ catg.sum_catg_evr }} </p>
+                      {% endfor %}
+
+
+                    <p>  sum_category_evr: {{ evidence_stats.sum_category_evr }}</p>
+
+                    <p>  Ev_Stats: {{ evidence_stats }}</p>
+
+
+
+                        </h6>
+
                     <canvas id="categories-chart" width="400" height="400"></canvas>
                 </div>
             </div>
@@ -34,7 +50,7 @@
                         <button class="btn">New Evidence</button>
                     </h5>
 
-                    {% for evidence in evidence_list %}
+                    {% for evidence in evidence_stats %}
 
                     <div class="row">
                         <div class="col-md-2">
@@ -42,7 +58,7 @@
                         </div>
                         <div class="col-md-10 item-details">
                             <div>
-                                <span class="heading">Vulnerability Assessment</span>
+                                <span class="heading">{{evidence.title}}</span>
                                 <span class="date">{{evidence.time_elapsed}}</span>
                             </div>
                             <div>

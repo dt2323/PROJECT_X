@@ -27,12 +27,13 @@ INSTALLED_APPS = [
                   'django.contrib.contenttypes',
                   'django.contrib.sessions',
                   'django.contrib.messages',
-                  #'django.contrib.staticfiles', #Disabled temporarily for development
+                  'django.contrib.staticfiles', #Disabled temporarily for development
                   'livereload',
                   'app',
                   'threadedcomments',
                   'django_comments',
                   'django.contrib.sites',
+                  'debug_toolbar',
                   'bootstrap3',
                   'accounts',
                   'evidence',
@@ -53,8 +54,10 @@ MIDDLEWARE = [
               'django.contrib.auth.middleware.AuthenticationMiddleware',
               'django.contrib.messages.middleware.MessageMiddleware',
               'django.middleware.clickjacking.XFrameOptionsMiddleware',
+              'debug_toolbar.middleware.DebugToolbarMiddleware',
               ]
 
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'EvidenceBase.urls'
 
@@ -100,7 +103,7 @@ STATIC_URL = '/staticfiles/'
 
 STATICFILES_DIRS = (
                     os.path.join(BASE_DIR, "app", "static"),
-                    # os.path.join(BASE_DIR, "staticfiles", "media"),
+                    os.path.join(BASE_DIR, "staticfiles", "media"),
                     # os.path.join(BASE_DIR, "attribute", "static"),
                     # os.path.join(BASE_DIR, "category", "static"),
                     # os.path.join(BASE_DIR, "evidence", "static"),
@@ -121,10 +124,10 @@ TIME_ZONE = 'Europe/Istanbul'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv('DB_NAME'),
-        "USER": os.getenv('DB_USER'),
-        "PASSWORD": os.getenv('DB_PASSWORD'),
-        "HOST": os.getenv('DB_HOST'),
-        "PORT": os.getenv('DB_PORT')
+        "NAME": "evbasedb",
+        "USER": "tyty",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "",
     }
 }
